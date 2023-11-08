@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+unless User.any?
+  User.create(name: 'Bob', email: 'bob@example.com')
+end
+
+unless Dictionary.any?
+  Dictionary.create(title: 'test')
+end
+
