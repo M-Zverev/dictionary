@@ -1,3 +1,13 @@
+## What is our project about?
+
+Our project is a dictionary site based on Ruby on Rails. It will allow user to watch automatically generated cards or create his own cards to help him learn foreign languages (English, for starters). After that, user would be able to complete a test to check whether they learned new words or not. Registration to site would be mandatory. User's best score would be saved to database.
+
+P.s. description above may change in the future.
+
+## Developers
+
+Михаил Зверев, Гаджиахмед Рамазанов, Егор Ивлев, Артём Григоренко, Айс Польшинов (все ФИИТ 3-10)
+
 ## Running in development mode
 
 Dependencies:
