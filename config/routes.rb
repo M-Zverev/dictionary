@@ -7,4 +7,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root "mainpage#index"
+  get "/registration", to: "registration#new"
+  post "/registration", to: "dictionary#create"
+  get "/login", to: "login#new"
+  post "/login", to: "login#create"
+  delete "/login", to: "login#delete"
+  get "/profile", to: "profile#show"
+  get "/settings", to: "settings#show"
+  patch "/settings", to: "settings#update"
+  get "/card", to: "card#new"
+  post "/card", to: "card#create"
+  delete "/card", to: "card#delete"
+  patch "/card", to: "card#update"
+
 end
