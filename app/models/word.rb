@@ -1,5 +1,5 @@
 class Word < ApplicationRecord
   validates :word, :translation, :presence => true
 
-  belongs_to :dictionary
+  belongs_to :wordbook
 end
