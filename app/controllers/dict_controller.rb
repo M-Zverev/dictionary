@@ -1,4 +1,4 @@
-def DictController < ApplicationController
+class DictController < ApplicationController
 
     def new
 
