@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post "/login", to: "login#create" #ввод пользователем логина-пароля, проверка корректности, создание сессии
   delete "/login", to: "login#delete" #удаление логина (например для анлога)
   get "/profile/:id", to: "profile#show" #показ профиля пользователя
-  patch "/profile/:id", to "profile#update" #изменения профиля пользователя
+  patch "/profile/:id", to: "profile#update" #изменения профиля пользователя
   get "/settings/:id", to: "settings#show" #показ настроек пользователя
   patch "/settings/:id", to: "settings#update" #изменение настроек пользователя
   get "/card", to: "card#new" #создание объекта формы для карточки
