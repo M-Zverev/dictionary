@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_222123) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "wordbooks", force: :cascade do |t|
