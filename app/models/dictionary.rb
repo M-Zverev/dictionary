@@ -1,5 +1,5 @@
-class Wordbook < ApplicationRecord
-  self.table_name = "wordbooks"
+class Dictionary < ApplicationRecord
+  self.table_name = "dictionaries"
   validates :title, :presence => true
 
   belongs_to :user

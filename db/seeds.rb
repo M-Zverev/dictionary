@@ -9,10 +9,10 @@
 #   end
 
 unless User.any?
-  User.create(name: 'Bob', email: 'bob@example.com')
-end
-
-unless Dictionary.any?
-  Dictionary.create(title: 'test')
+  user = User.create(name: 'Bob', email: 'bob@example.com')
+  dict = user.dictionaries.create(title: 'My dictionary')
+  dict.words.create([{word: 'Dictionary', translation: 'Словарь'},
+                         {word: 'Car', translation: 'Автомобиль'}])
+  user.save
 end
 

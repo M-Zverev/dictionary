@@ -1,4 +1,4 @@
-def WordController < ApplicationController
+class WordController < ApplicationController
     def new
 
     end
