@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "list#index" #основная страница словаря, где отображаются словари, профиль, настройки и тд
+  get "/index", to: "list#index"
   get "/registration", to: "registration#new" #создание объекта формы для регистрации
   post "/registration", to: "registration#create" #ввод данных пользователем, создание графы в таблице
   get "/login", to: "login#new" #создание объекта формы для входа в аккаунт

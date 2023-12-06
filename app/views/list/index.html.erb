@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dictionary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100&display=swap" rel="stylesheet">
+  <%= stylesheet_link_tag "styletest" %>
+</head>
+<body>
+  <header>
+    <nav class="navigation">
+        <a href="index.html" id="dictionary-navbar">Your Dictionary</a>
+        <a href="card.html" id="learn-navbar">Learn</a>
+        <button class="login-btn">Log Out</button>
+    </nav>
+  </header>
+
+  <div class="dictionary-container">
+    <h1>Список словарей</h1>
+
+    <form id="add-dictionary-form">
+        <label for="dictionary-name">Название словаря:</label>
+        <input type="text" id="dictionary-name" required>
+        <button type="submit">Добавить словарь</button>
+    </form>
+
+    <ul id="dictionary-list"></ul>
+
+    <div id="word-list" style="display:none;">
+        <h2 id="dictionary-title"></h2>
+        <table id="word-table">
+            <thead>
+                <tr>
+                    <th>Слово на английском</th>
+                    <th>Перевод</th>
+                    <th>Транскрипция</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <form id="add-word-form">
+            <label for="english-word">Слово на английском:</label>
+            <input type="text" id="english-word" required>
+            
+            <label for="translation">Перевод:</label>
+            <input type="text" id="translation" required>
+
+            <label for="transcription">Транскрипция:</label>
+            <input type="text" id="transcription">
+
+            <button type="submit" class="add-btn">Добавить слово</button>
+        </form>
+    </div>
+</div>  
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    const dictionaryList = document.getElementById('dictionary-list');
+    const addDictionaryForm = document.getElementById('add-dictionary-form');
+    const wordList = document.getElementById('word-list');
+    const wordTableBody = document.querySelector('#word-table tbody');
+    const dictionaryTitle = document.getElementById('dictionary-title');
+    const addWordForm = document.getElementById('add-word-form');
+  
+    addDictionaryForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const dictionaryNameInput = document.getElementById('dictionary-name');
+        const dictionaryName = dictionaryNameInput.value;
+  
+        addDictionary(dictionaryName);
+        dictionaryNameInput.value = '';
+    });
+  
+    dictionaryList.addEventListener('click', function (event) {
+        const target = event.target;
+        if (target.tagName === 'LI') {
+            const dictionaryName = target.textContent;
+            showWordList(dictionaryName);
+        }
+    });
+  
+    addWordForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+  
+        const englishWordInput = document.getElementById('english-word');
+        const translationInput = document.getElementById('translation');
+        const transcriptionInput = document.getElementById('transcription');
+  
+        const englishWord = englishWordInput.value;
+        const translation = translationInput.value;
+        const transcription = transcriptionInput.value || '';
+  
+        addWord(englishWord, translation, transcription);
+  
+        englishWordInput.value = '';
+        translationInput.value = '';
+        transcriptionInput.value = '';
+    });
+  
+    function addDictionary(dictionaryName) {
+        const listItem = document.createElement('li');
+        listItem.textContent = dictionaryName;
+        dictionaryList.appendChild(listItem);
+    }
+  
+    function showWordList(dictionaryName) {
+  
+        const words = [];
+  
+        wordTableBody.innerHTML = '';
+  
+        words.forEach(word => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${word.english}</td>
+                <td>${word.translation}</td>
+                <td>${word.transcription}</td>
+            `;
+            wordTableBody.appendChild(row);
+        });
+  
+        dictionaryTitle.textContent = `Слова в словаре "${dictionaryName}"`;
+        wordList.style.display = 'block';
+    }
+  
+    function addWord(englishWord, translation, transcription) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${englishWord}</td>
+            <td>${translation}</td>
+            <td>${transcription}</td>
+        `;
+        wordTableBody.appendChild(row);
+    }
+  });
+  </script>
+</body>
+</html>
