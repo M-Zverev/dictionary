@@ -9,11 +9,12 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "list#index" #основная страница словаря, где отображаются словари, профиль, настройки и тд
   get "/index", to: "list#index"
-  get "/registration", to: "registration#new" #создание объекта формы для регистрации
-  post "/registration", to: "registration#create" #ввод данных пользователем, создание графы в таблице
+  get "/users/new", to: "users#new"
+  post "/users/reg", to: "users#create" #создание объекта формы для регистрации
+  #post "/registration", to: "registration#create" #ввод данных пользователем, создание графы в таблице
   get "/login", to: "login#new" #создание объекта формы для входа в аккаунт
   post "/login", to: "login#create" #ввод пользователем логина-пароля, проверка корректности, создание сессии
-  delete "/login", to: "login#delete" #удаление логина (например для анлога)
+  get "/logout", to: "login#delete" #удаление логина (например для анлога)
   get "/profile/:id", to: "profile#show" #показ профиля пользователя
   patch "/profile/:id", to: "profile#update" #изменения профиля пользователя
   get "/settings/:id", to: "settings#show" #показ настроек пользователя
@@ -31,4 +32,5 @@ Rails.application.routes.draw do
   delete "word", to: "word#delete" #удаление слова из словаря
   patch "word/:id", to: "word#update" #редактирование слова в словаре
   get "word/:id", to: "word#show" #показ слова
+
 end
