@@ -8,31 +8,43 @@
     <%= stylesheet_link_tag "styletest" %>
 </head>
 <body>
-    <h1 id="dictionary-title"></h1>
-    <table id="word-table">
-        <thead>
-            <tr>
-                <th>Слово на английском</th>
-                <th>Перевод</th>
-                <th>Транскрипция</th>
-            </tr>
-        </thead>
-        <tbody id="word-table-body">
-        </tbody>
-    </table>
+    <header>
+        <nav class="navigation">
+            <a href="index.html" id="dictionary-navbar">Your Dictionary</a>
+            <a href="card" id="learn-navbar">Learn</a>
+            <form action="/logout">
+                <button class="login-btn">Log Out</button>
+            </form>
+        </nav>
+    </header>
 
-    <form id="add-word-form">
-        <label for="english-word">Слово на английском:</label>
-        <input type="text" id="english-word" required>
-        
-        <label for="translation">Перевод:</label>
-        <input type="text" id="translation" required>
+    <div class="dictionary-container">
+        <h1 id="dictionary-title"></h1>
+        <table id="word-table">
+            <thead>
+                <tr>
+                    <th>Слово на английском</th>
+                    <th>Перевод</th>
+                    <th>Транскрипция</th>
+                </tr>
+            </thead>
+            <tbody id="word-table-body">
+            </tbody>
+        </table>
 
-        <label for="transcription">Транскрипция:</label>
-        <input type="text" id="transcription">
+        <form id="add-word-form">
+            <label for="english-word">Слово на английском:</label>
+            <input type="text" id="english-word" required>
+            
+            <label for="translation">Перевод:</label>
+            <input type="text" id="translation" required>
 
-        <button type="submit" class="add-btn">Добавить слово</button>
-    </form>
+            <label for="transcription">Транскрипция:</label>
+            <input type="text" id="transcription">
+
+            <button type="submit" class="add-btn">Добавить слово</button>
+        </form>
+    </div>
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
