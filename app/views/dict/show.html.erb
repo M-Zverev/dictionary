@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Page</title>
+    <%= stylesheet_link_tag "styletest" %>
+</head>
+<body>
+    <header>
+        <nav class="navigation">
+            <a href="/index.html" id="dictionary-navbar">Your Dictionary</a>
+            <a href="/card" id="learn-navbar">Learn</a>
+            <form action="/logout">
+                <button class="login-btn">Log Out</button>
+            </form>
+        </nav>
+    </header>
+
+    <div class="dictionary-container">
+        <h1 id="dictionary-title"><%= @dictionary.title %></h1>
+        <%= link_to 'Изменить название словаря', edit_dictionary_path(@dictionary) %>
+        <table id="word-table">
+            <thead>
+                <tr>
+                    <th>Слово на английском</th>
+                    <th>Перевод</th>
+                    <th>Транскрипция</th>
+                </tr>
+            </thead>
+            <tbody id="word-table-body">
+                <% @words.each do |word| %>
+                    <tr>
+                        <td><%= word.word %></td>
+                        <td><%= word.translation %></td>
+                        <td><%= word.transcription %></td>
+                        <td><%= link_to 'Изменить слово', edit_dictionary_word_path(@dictionary, word) %></td>
+                        <td><%= button_to 'Удалить словарь', dictionary_word_path(@dictionary, word), method: :delete %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+
+      <%= button_to 'Добавить слова', new_dictionary_word_path(@dictionary, @dictionary.words.build), method: :get %>
+
+      <%#= render 'word/form', dictionary: @dictionary, word: @dictionary.words.build%>
+
+      <%= button_to 'Удалить словарь', dictionary_path(@dictionary), method: :delete %>
+    </div>
+
+    <script type="text/javascript">
+        /*document.addEventListener('DOMContentLoaded', function () {
+            const wordTableBody = document.getElementById('word-table-body');
+            const dictionaryTitle = document.getElementById('dictionary-title');
+            const addWordForm = document.getElementById('add-word-form');
+
+            addWordForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const englishWordInput = document.getElementById('english-word');
+                const translationInput = document.getElementById('translation');
+                const transcriptionInput = document.getElementById('transcription');
+
+                const englishWord = englishWordInput.value;
+                const translation = translationInput.value;
+                const transcription = transcriptionInput.value || '';
+
+                addWord(englishWord, translation, transcription);
+
+                englishWordInput.value = '';
+                translationInput.value = '';
+                transcriptionInput.value = '';
+            });
+
+            function addWord(englishWord, translation, transcription) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${englishWord}</td>
+                    <td>${translation}</td>
+                    <td>${transcription}</td>
+                `;
+                wordTableBody.appendChild(row);
+            }
+
+            const currentDictionary = localStorage.getItem('currentDictionary');
+            dictionaryTitle.textContent = `Слова в словаре "${currentDictionary}"`;
+        });*/
+    </script>
+</body>
+</html>

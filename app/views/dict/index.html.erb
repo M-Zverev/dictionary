@@ -13,8 +13,8 @@
 <body>
   <header>
     <nav class="navigation">
-        <a href="index.html" id="dictionary-navbar">Your Dictionary</a>
-        <a href="card" id="learn-navbar">Learn</a>
+        <a href="/index.html" id="dictionary-navbar">Your Dictionary</a>
+        <a href="/card" id="learn-navbar">Learn</a>
         <form action="/logout">
           <button class="login-btn">Log Out</button>
         </form>
@@ -24,18 +24,18 @@
   <div class="dictionary-container">
     <h1>Список словарей</h1>
 
-    <form id="add-dictionary-form">
-        <label for="dictionary-name">Название словаря:</label>
-        <input type="text" id="dictionary-name" required>
-        <button type="submit">Добавить словарь</button>
-    </form>
+    <%= render 'form', dictionary: @dictionary %>
 
-    <ul id="dictionary-list"></ul>
-  </div>  
+    <ul id="dictionary-list">
+      <% @dictionaries.each do |dict| %>
+        <li><%= link_to "#{dict.title}", dictionary_path(dict) %></li>
+      <% end %>
+    </ul>
+  </div>
 
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
-      const dictionaryList = document.getElementById('dictionary-list');
+      /*const dictionaryList = document.getElementById('dictionary-list');
       const addDictionaryForm = document.getElementById('add-dictionary-form');
 
       addDictionaryForm.addEventListener('submit', function (event) {
@@ -59,12 +59,12 @@
         const listItem = document.createElement('li');
         listItem.textContent = dictionaryName;
         dictionaryList.appendChild(listItem);
-      }
+      }*/
 
-      function openWordPage(dictionaryName) {
+      /*function openWordPage(dictionaryName) {
         localStorage.setItem('currentDictionary', dictionaryName);
         const newPage = window.open('dict', '_blank');
-      }
+      }*/
     });
   </script>
 </body>
