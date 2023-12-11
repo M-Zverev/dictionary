@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  validates :name, :email, :presence => true
+  has_secure_password
+  validates :email, :presence => true
   validates :email, :uniqueness => true
 
   has_many :dictionaries

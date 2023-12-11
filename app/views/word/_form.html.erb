@@ -1,0 +1,14 @@
+<%#= form_with model: word, url: "/dict/#{@dictionary.id}/word/#{word.id}" do |form| %>
+
+<%= form_with model: [ dictionary, word ] do |form| %>
+  <%= form.label :word, 'Слово на английском' %>
+  <%= form.text_field :word %>
+
+  <%= form.label :translation, 'Перевод' %>
+  <%= form.text_field :translation %>
+
+  <%= form.label :transcription, 'Транскрипция' %>
+  <%= form.text_field :transcription %>
+
+  <p><%= form.submit 'Сохранить слово' %></p>
+<% end %>
