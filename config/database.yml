@@ -24,6 +24,8 @@ development:
   database: dictionary_development
   username: <%= ENV["DICTIONARY_DEV_DATABASE_USERNAME"] %>
   password: <%= ENV["DICTIONARY_DEV_DATABASE_PASSWORD"] %>
+  host: localhost
+  port: 5432
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -86,3 +88,4 @@ production:
   database: dictionary_production
   username: dictionary
   password: <%= ENV["DICTIONARY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
