@@ -28,7 +28,7 @@
 
     <ul id="dictionary-list">
       <% @dictionaries.each do |dict| %>
-        <li><%= link_to "#{dict.title}", dictionary_path(dict) %></li>
+        <li id="dictionary-list-elem"><%= link_to "#{dict.title}", dictionary_path(dict), class: 'dict-links' %></li>
       <% end %>
     </ul>
   </div>
