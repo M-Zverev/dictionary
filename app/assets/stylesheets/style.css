@@ -48,6 +48,11 @@
   margin: auto;
   font-family: 'Roboto Condensed', sans-serif;
   width: 20%;
+  transition: transform 1s;
+}
+
+.term.is-flipped {
+  transform: rotateY(360deg);
 }
 
 .definition {

@@ -35,6 +35,7 @@
       <button id="next-button">Next Word</button>
     </div>
   </div>
+
   <script type="text/javascript">
   const term = document.querySelector('.term');
   const definition = document.querySelector('.definition');
@@ -57,7 +58,9 @@
   }
   
   checkButton.addEventListener('click', function() {
-    definition.style.display = 'block';
+    /*definition.style.display = 'block';*/
+    term.classList.toggle('is-flipped');
+    term.innerHTML = `<h3>${randomTerm[1]}</h3>`;
   });
   
   nextButton.addEventListener('click', function() {
