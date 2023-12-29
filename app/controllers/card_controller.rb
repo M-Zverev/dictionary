@@ -17,4 +17,11 @@ class CardController < ApplicationController
     def update
 
     end
+
+
+    def random_word
+        respond_to do |format|
+            format.json { render json: { term: "some_term", translation: "some_translation" } }
+        end
+    end
 end

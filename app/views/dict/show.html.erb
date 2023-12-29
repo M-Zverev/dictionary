@@ -19,8 +19,14 @@
     </header>
 
     <div class="dictionary-container">
-        <h1 id="dictionary-title"><%= @dictionary.title %></h1>
-        <%= link_to 'Изменить название словаря', edit_dictionary_path(@dictionary) %>
+      <h1 id="dictionary-title">
+        <%= @dictionary.title %>
+        <%= link_to '✏️', 'javascript:void(0)', class: 'edit-title-btn', id: 'edit-title-btn' %>
+      </h1>
+
+      <div id="edit-title-form-container" style="display: none;">
+        <%= render partial: 'edit_title_form', locals: { dictionary: @dictionary } %>
+      </div>
         <table id="word-table">
             <thead>
                 <tr>
@@ -35,19 +41,38 @@
                         <td><%= word.word %></td>
                         <td><%= word.translation %></td>
                         <td><%= word.transcription %></td>
-                        <td><%= link_to 'Изменить слово', edit_dictionary_word_path(@dictionary, word) %></td>
-                        <td><%= button_to 'Удалить словарь', dictionary_word_path(@dictionary, word), method: :delete %></td>
-                    </tr>
+                      <td>
+                        <%= link_to(edit_dictionary_word_path(@dictionary, word), class: 'edit-word-btn') do %>
+                          <span class="emoji"></span>
+                        <% end %>
+                      </td>
+                      <td>
+                        <%= button_to(dictionary_word_path(@dictionary, word), method: :delete, class: 'delete-word-btn') do %>
+                          <span class="emoji"></span>
+                        <% end %>
+                      </td>
+                      </tr>
                 <% end %>
             </tbody>
         </table>
 
-      <%= button_to 'Добавить слова', new_dictionary_word_path(@dictionary, @dictionary.words.build), method: :get %>
+      <%= button_to 'Добавить слово', new_dictionary_word_path(@dictionary, @dictionary.words.build), method: :get, class: 'create-word-btn', id: 'add-word-btn' %>
 
       <%#= render 'word/form', dictionary: @dictionary, word: @dictionary.words.build%>
 
-      <%= button_to 'Удалить словарь', dictionary_path(@dictionary), method: :delete %>
+      <%= button_to 'Удалить словарь', dictionary_path(@dictionary), method: :delete, class: 'delete-dict-btn', id: 'delete-dict-btn' %>
     </div>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', function () {
+            const editTitleBtn = document.getElementById('edit-title-btn');
+            const editTitleFormContainer = document.getElementById('edit-title-form-container');
+
+            editTitleBtn.addEventListener('click', function () {
+                editTitleFormContainer.style.display = editTitleFormContainer.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
 
     <script type="text/javascript">
         /*document.addEventListener('DOMContentLoaded', function () {

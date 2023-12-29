@@ -1,0 +1,5 @@
+<%= form_with model: dictionary, id: 'edit-dictionary-form', local: true, remote: true do |form| %>
+  <p><%= form.label :title, 'Название словаря' %></p>
+  <p><%= form.text_field :title, class: 'dict-input' %></p>
+  <p><%= form.submit 'Сохранить', class: 'create-dict-btn' %></p>
+<% end %>
